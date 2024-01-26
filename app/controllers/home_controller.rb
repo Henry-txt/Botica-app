@@ -1,9 +1,9 @@
 class HomeController < ApplicationController
   def index
-    if params[:query].present?
-      @products = Product.where("name LIKE ?", "%#{params[:query]}%")
+    @products = if params[:query].present?
+      Product.where("name LIKE ?", "%#{params[:query]}%")
     else
-      @products = Product.all
+      Product.all
     end
   end
 end

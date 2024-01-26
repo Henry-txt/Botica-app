@@ -12,12 +12,12 @@ class SaleDashboard < Administrate::BaseDashboard
     client: Field::BelongsTo,
     sales_details: Field::HasMany.with_options(
       searchable: false,
-      collection: ->(field) { field.resource.product.pluck(:name).join(', ') },
-      field: :name, # Replace :name with the actual attribute you want to display
+      collection: ->(field) { field.resource.product.pluck(:name).join(", ") },
+      field: :name # Replace :name with the actual attribute you want to display
     ),
     total: Field::String.with_options(searchable: false),
     created_at: Field::DateTime,
-    updated_at: Field::DateTime,
+    updated_at: Field::DateTime
   }.freeze
 
   # COLLECTION_ATTRIBUTES
@@ -63,7 +63,6 @@ class SaleDashboard < Administrate::BaseDashboard
   #     open: ->(resources) { resources.where(open: true) }
   #   }.freeze
   COLLECTION_FILTERS = {}.freeze
-
 
   # Overwrite this method to customize how sales are displayed
   # across all pages of the admin dashboard.

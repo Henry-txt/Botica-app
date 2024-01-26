@@ -7,7 +7,7 @@
 module Admin
   class ApplicationController < Administrate::ApplicationController
     include Internationalization
-    
+
     before_action :authenticate_admin
 
     def authenticate_admin

@@ -1,27 +1,27 @@
 # sales_controller_spec.rb
 
-require 'rails_helper'
+require "rails_helper"
 
 RSpec.describe SalesController, type: :controller do
   describe "POST #create" do
     context "with valid params" do
-      let!(:category) do 
+      let!(:category) do
         Category.create(name: "category")
       end
-      let!(:product_1) do 
+      let!(:product_1) do
         Product.create(name: "Product 1", price: 100, category: category)
       end
-      let!(:product_2) do 
+      let!(:product_2) do
         Product.create(
-            name: "Product 2",
-            price: 100, category: category
+          name: "Product 2",
+          price: 100, category: category
         )
       end
-      let!(:client) do 
+      let!(:client) do
         Client.create(
-            name: "Client 1",
-            address: "Address 1",
-            telephone: "123456789",
+          name: "Client 1",
+          address: "Address 1",
+          telephone: "123456789"
         )
       end
       let(:params) do
@@ -29,9 +29,9 @@ RSpec.describe SalesController, type: :controller do
           total: 100,
           client_id: client.id,
           products: [
-            { id: product_1.id, quantity: 2 },
-            { id: product_2.id, quantity: 3 },
-          ],
+            {id: product_1.id, quantity: 2},
+            {id: product_2.id, quantity: 3}
+          ]
         }
       end
 
@@ -54,7 +54,7 @@ RSpec.describe SalesController, type: :controller do
         {
           total: 100,
           client_id: 1,
-          products: [],
+          products: []
         }
       end
 

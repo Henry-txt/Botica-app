@@ -1,6 +1,6 @@
 class ClientsController < ApplicationController
   skip_before_action :authenticate_user!
-	skip_before_action :verify_authenticity_token
+  skip_before_action :verify_authenticity_token
 
   # GET /items or /items.json
   def index

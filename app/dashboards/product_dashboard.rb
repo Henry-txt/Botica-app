@@ -15,7 +15,7 @@ class ProductDashboard < Administrate::BaseDashboard
     price: Field::String.with_options(searchable: false),
     stock: Field::Number,
     created_at: Field::DateTime,
-    updated_at: Field::DateTime,
+    updated_at: Field::DateTime
   }.freeze
 
   # COLLECTION_ATTRIBUTES

@@ -9,7 +9,7 @@ class SalesController < ApplicationController
 
   def create
     if params[:products].empty?
-      render json: { error: "No products" }, status: :unprocessable_entity and return
+      render json: {error: "No products"}, status: :unprocessable_entity and return
     end
 
     error = nil
@@ -17,7 +17,7 @@ class SalesController < ApplicationController
     ActiveRecord::Base.transaction do
       @sale = Sale.create(
         total: params[:total],
-        client_id: params[:client_id],
+        client_id: params[:client_id]
       )
 
       insufficient_stock_product = nil
@@ -27,7 +27,7 @@ class SalesController < ApplicationController
         SalesDetail.create(
           quantity: product[:quantity],
           sale_id: @sale.id,
-          product_id: product[:id],
+          product_id: product[:id]
         )
 
         founded_product = Product.find(product[:id])
@@ -43,18 +43,18 @@ class SalesController < ApplicationController
     end
 
     if error
-      render json: { error: error }, status: :unprocessable_entity
+      render json: {error: error}, status: :unprocessable_entity
     else
       render json: @sale
     end
   end
 
-  #metodo para ver sales details
+  # metodo para ver sales details
   def showSaleDetails
     @sale = Sale.find(params[:id])
     @sale_details = SalesDetail.where(sale_id: @sale.id)
     if @sale.nil?
-      render json: { error: "Sale not found" }, status: :unprocessable_entity and return
+      render json: {error: "Sale not found"}, status: :unprocessable_entity and return
     else
       render json: @sale_details
     end
