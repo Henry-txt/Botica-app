@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>AppBotica</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+
+    <%= stylesheet_link_tag "tailwind", "inter-font", "data-turbo-track": "reload" %>
+
+    <%= javascript_include_tag "application", "data-turbo-track": "reload", defer: true %>
+  </head>
+
+  <body>
+    <% if notice || alert %>
+      <%= render "shared/alert", message: notice || alert %>
+    <% end %>
+
+    <% if user_signed_in? %>
+      <%= render 'shared/navbar' %>
+    <% end %>
+    <%= yield %>
+
+    <ul class="fixed bottom-0 w-full flex items-center justify-center">
+      <% I18n.available_locales.each do |locale| %>
+        <li class="block px-4 py-2 text-sm text-gray-700">
+          <% if I18n.locale == locale %>
+            <div class="bg-green-300 p-2">
+              <%= t(locale, scope: 'locales') %>
+            </div>
+          <% else %>
+            <%= link_to t(locale, scope: 'locales'), url_for(locale: locale) %>
+          <% end %>
+        </li>
+      <% end %>
+    </ul>
+  </body>
+</html>
