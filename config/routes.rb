@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
-  get "up" => "rails/health#show", as: :rails_health_check
+  get "up" => "rails/health#show", :as => :rails_health_check
 
-  root 'home#index'
+  root "home#index"
 
   devise_for :users
 
@@ -16,6 +16,6 @@ Rails.application.routes.draw do
 
   namespace :admin do
     resources :suppliers, :products, :categories, :clients, :sales
-    root 'suppliers#index'
+    root "suppliers#index"
   end
 end

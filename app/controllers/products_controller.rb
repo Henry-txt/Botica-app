@@ -1,4 +1,4 @@
-#Producto
+# Producto
 class ProductsController < ApplicationController
   skip_before_action :authenticate_user!
   def index
@@ -6,4 +6,3 @@ class ProductsController < ApplicationController
     render json: @products
   end
 end
-

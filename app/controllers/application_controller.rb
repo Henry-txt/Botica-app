@@ -1,10 +1,9 @@
 class ApplicationController < ActionController::Base
   include Internationalization
-  
+
   before_action :authenticate_user!
   # before_action :set_render_cart
   # before_action :initialize_cart
-
 
   def after_sign_in_path_for(resource)
     return admin_root_path if resource.admin?
@@ -25,7 +24,4 @@ class ApplicationController < ActionController::Base
   #     session[:cart_id] = @cart.id
   #   end
   # end
-
-
-
 end
